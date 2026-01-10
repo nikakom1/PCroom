@@ -139,7 +139,7 @@ def cart():
         total_sum = sum(product.price for product in products)
     else:
         products = []
-    return render_template('cart.html', products=products, cart_items=length, total_sum=total_sum)
+    return render_template('Cart.html', products=products, cart_items=length, total_sum=total_sum)
 
 @app.route('/add_to_cart/<int:item_id>', methods=['GET', 'POST'])
 def add_to_cart(item_id):
@@ -159,4 +159,5 @@ def remove_from_cart(item_id):
     return redirect("/cart")
 @login_manager.user_loader
 def load_user(user_id):
+
     return db.session.get(User, int(user_id))
