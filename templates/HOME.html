@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block container %}
+
+
+<div class="row m-2">
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://itworks.ge/images/slides/original/d0eb8ad43fcd29875feed5379e33f7bff0d9474a.webp"
+                     class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://itworks.ge/images/slides/original/65b6d1c9bd2dfcabae5031d9639a76cb7714ff8c.webp"
+                     class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://itworks.ge/images/slides/original/ca56e63a37b2dca53a009ee05ce78867f95cbc9b.webp"
+                     class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="row m-2">
+        {% for product in products %}
+        <div class="card" style="width: 18rem;">
+            <img src="/static/images/{{ product['image'] }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <b><p class="card-title">{{ product['name'] }} </p></b>
+                <p class="card-text">{{ product['price'] }}ლარი</p>
+                <form action="/add_to_cart/{{ product.id }}" method="post">
+                    <input type="hidden" name="item_id" value="{{ product.id }}">
+                    <div class="container">
+
+                        <form action="/add_to_cart/{{ product.id }}" method="post">
+                            <input type="hidden" name="item_id" value="{{ product.id }}">
+                            <button type="submit" class="btn btn-outline-primary mb-2">კალათაში დამატება</button>
+                        </form>
+                    </div>
+
+                </form>
+
+                {% if current_user.role == "Admin" %}
+                <a href="/delete/{{ product['id'] }}" class="btn btn-danger">Delete</a>
+                <a href="/edit_product/{{ product.id }}" class="btn btn-warning">Edit</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+
+
+
+
+
+

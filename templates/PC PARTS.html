@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block container %}
+
+
+<div class="row m-2">
+    {% for product in products %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ product['image'] }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ product['part name'] }}</h5>
+            <p class="card-text">{{ product['price'] }}ლარი</p>
+            <a href="{{ product['info'] }}" class="btn btn-primary">shop</a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="row mt-2">
+        <a class="btn btn-primary" href="/">GO TO HOME PAGE</a>
+
+    </div>
+
+    {% endblock %}
+

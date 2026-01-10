@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block container %}
+<div class="container-md bg-white mt-2 border rounded-lg">
+    <div class="row mt-2">
+        <form class="col-6 offset-3 my-2" method="post">
+            {{ form.hidden_tag() }}
+            <div class="alert alert-danger">
+                {% for errors in form.errors.values() %}
+                {% for error in errors %}
+                {{ error }}<br>
+                {% endfor %}
+                {% endfor %}
+            </div>
+
+
+            <div class="row mt-2">
+
+
+                {{ form.username(class="form-control", placeholder=form.username.label.text) }}
+            </div>
+            <div class="row mt-2">
+                {{ form.password(class="form-control", placeholder=form.password.label.text) }}
+            </div>
+            <div class="row mt-2">
+                {{ form.repeat_password(class="form-control", placeholder=form.repeat_password.label.text) }}
+            </div>
+            <div class="row mt-2">
+                {{ form.birthday.label }}
+                {{ form.birthday(class="form-control") }}
+
+                <div class="row mt-2">
+                    {{ form.submit(class="btn_primary") }}
+                </div>
+
+
+                <div class="row mt-2">
+
+                    <a class="btn btn-danger" href="/login">login</a>
+                </div>
+        </form>
+    </div>
+</div>
+<div class="row mt-2">
+    <a class="btn btn-primary" href="/">GO TO HOME PAGE</a>
+</div>
+{% endblock %}
